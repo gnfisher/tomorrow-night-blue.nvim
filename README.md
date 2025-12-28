@@ -2,8 +2,6 @@
 
 A faithful Lua port of the classic **Tomorrow Night Blue** theme from VS Code for Neovim.
 
-![Tomorrow Night Blue](https://via.placeholder.com/800x400/002451/ffffff?text=Tomorrow+Night+Blue)
-
 ## 🎨 Color Palette
 
 | Color   | Hex       | Usage                          |
@@ -34,7 +32,7 @@ A faithful Lua port of the classic **Tomorrow Night Blue** theme from VS Code fo
 
 ```lua
 {
-  "your-username/tomorrow-night-blue.nvim",
+  "gnfisher/tomorrow-night-blue.nvim",
   lazy = false,
   priority = 1000,
   config = function()
@@ -50,7 +48,7 @@ A faithful Lua port of the classic **Tomorrow Night Blue** theme from VS Code fo
 
 ```lua
 use {
-  "your-username/tomorrow-night-blue.nvim",
+  "gnfisher/tomorrow-night-blue.nvim",
   config = function()
     require("tomorrow-night-blue").setup()
     vim.cmd.colorscheme("tomorrow-night-blue")
@@ -61,7 +59,7 @@ use {
 ### [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'your-username/tomorrow-night-blue.nvim'
+Plug 'gnfisher/tomorrow-night-blue.nvim'
 
 " In your init.vim after plug#end()
 colorscheme tomorrow-night-blue
