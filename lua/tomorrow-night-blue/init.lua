@@ -11,6 +11,10 @@ M.config = {
     keywords = {},
     functions = {},
     variables = {},
+    diagnostics = {
+      -- Inline diagnostics (virtual text)
+      virtual_text = { italic = true },
+    },
   },
 }
 
@@ -33,6 +37,15 @@ function M.load()
   local colors = require("tomorrow-night-blue.palette").colors
   local highlights = require("tomorrow-night-blue.highlights").setup(colors)
 
+  local function apply_style(style, groups)
+    if not style then
+      return
+    end
+    for _, group in ipairs(groups) do
+      highlights[group] = vim.tbl_extend("force", highlights[group] or {}, style)
+    end
+  end
+
   -- Apply transparent background if enabled
   if M.config.transparent then
     highlights.Normal.bg = nil
@@ -45,25 +58,53 @@ function M.load()
   end
 
   -- Apply custom styles
-  if M.config.styles.comments then
-    highlights.Comment = vim.tbl_extend("force", highlights.Comment, M.config.styles.comments)
-    highlights["@comment"] = vim.tbl_extend("force", highlights["@comment"], M.config.styles.comments)
-  end
-  
-  if M.config.styles.keywords then
-    highlights.Keyword = vim.tbl_extend("force", highlights.Keyword, M.config.styles.keywords)
-    highlights["@keyword"] = vim.tbl_extend("force", highlights["@keyword"], M.config.styles.keywords)
-  end
-  
-  if M.config.styles.functions then
-    highlights.Function = vim.tbl_extend("force", highlights.Function, M.config.styles.functions)
-    highlights["@function"] = vim.tbl_extend("force", highlights["@function"], M.config.styles.functions)
-  end
-  
-  if M.config.styles.variables then
-    highlights.Identifier = vim.tbl_extend("force", highlights.Identifier, M.config.styles.variables)
-    highlights["@variable"] = vim.tbl_extend("force", highlights["@variable"], M.config.styles.variables)
-  end
+  apply_style(M.config.styles.comments, { "Comment", "@comment" })
+
+  apply_style(M.config.styles.keywords, {
+    "Keyword",
+    "@keyword",
+    "@keyword.function",
+    "@keyword.operator",
+    "@keyword.return",
+    "Conditional",
+    "Repeat",
+    "Label",
+    "Exception",
+    "Include",
+    "Define",
+    "Macro",
+    "PreCondit",
+    "Statement",
+  })
+
+  apply_style(M.config.styles.functions, {
+    "Function",
+    "@function",
+    "@function.builtin",
+    "@function.call",
+    "@function.macro",
+    "@method",
+    "@method.call",
+    "@constructor",
+  })
+
+  apply_style(M.config.styles.variables, {
+    "Identifier",
+    "@variable",
+    "@variable.builtin",
+    "@field",
+    "@property",
+    "@parameter",
+    "@lsp.type.parameter",
+    "@lsp.type.variable",
+  })
+
+  apply_style(M.config.styles.diagnostics and M.config.styles.diagnostics.virtual_text, {
+    "DiagnosticVirtualTextError",
+    "DiagnosticVirtualTextWarn",
+    "DiagnosticVirtualTextInfo",
+    "DiagnosticVirtualTextHint",
+  })
 
   -- Set highlight groups
   for group, settings in pairs(highlights) do

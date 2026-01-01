@@ -81,6 +81,10 @@ require("tomorrow-night-blue").setup({
     keywords = { bold = false },
     functions = {},
     variables = {},
+    diagnostics = {
+      -- Inline diagnostics (virtual text)
+      virtual_text = { italic = true },
+    },
   },
 })
 ```
