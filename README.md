@@ -4,6 +4,9 @@ A faithful Lua port of the classic **Tomorrow Night Blue** theme from VS Code fo
 
 <img width="864" height="506" alt="image" src="https://github.com/user-attachments/assets/010aaa8d-e529-4e01-9515-46628732fef6" />
 
+<img width="864" height="506" alt="image" src="https://github.com/user-attachments/assets/1ab47e8e-ecb0-4935-ada8-78c16fe2c6d0" />
+
+
 ## 🎨 Color Palette
 
 | Color   | Hex       | Usage                          |
