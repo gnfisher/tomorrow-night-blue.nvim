@@ -60,7 +60,7 @@ function M.setup(colors)
     WarningMsg = { fg = colors.warning },
     Whitespace = { fg = colors.comment },
     WildMenu = { bg = colors.bg_visual },
-    WinBar = { fg = colors.fg },
+    WinBar = { fg = colors.blue, bold = true },
     WinBarNC = { fg = colors.fg_gutter },
 
     -- =============================================================
